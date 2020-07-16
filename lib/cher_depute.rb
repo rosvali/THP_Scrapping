@@ -17,14 +17,14 @@ def get_last(x)
 	name = x.css('td[1]/a').text.delete_prefix("Mme ").delete_prefix("M. ").split.last
 end
 
-def debuty
+def depute
 	pages = Nokogiri::HTML(URI.open('http://www2.assemblee-nationale.fr/deputes/liste/tableau'))
 	tmp = pages.css('//table/tbody/tr')
-	debutyname = tmp[0..1].map { |x| { "first_name" => get_first(x), "last_name" => get_last(x), "email" => get_email(x) } }
+	deputename = tmp[0..10].map { |x| { "first_name" => get_first(x), "last_name" => get_last(x), "email" => get_email(x) } }
 end
 
 begin
-	pp debuty
+	pp depute
 rescue => e
-	puts 'You messed up in debuty'
+	puts 'You messed up in depute'
 end
